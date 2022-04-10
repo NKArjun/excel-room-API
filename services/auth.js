@@ -22,7 +22,6 @@ const authUser = async (req, res, next) => {
         res.status(200).json(token);
 
     } catch (err) {
-        console.log(err);
         res.status(400).json(err);
     }
 }

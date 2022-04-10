@@ -26,7 +26,9 @@ const addUser = async (req, res, next) => {
 
 const getUser = async (req, res, next) => {
     try {
-        let user = await User.findOne({ email: req.params.email });
+        const email = req.user.email;
+        let user = await User.findOne({ email })
+            .select('-password');
         res.status(200).json(user);
     } catch (err) {
         res.status(400).json(err);
