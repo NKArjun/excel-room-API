@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 require('dotenv').config({ path: path.resolve(__dirname, '.env') })
 const mongoose = require('mongoose');
+const config = require('config');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -12,8 +13,13 @@ const authRouter = require('./routes/auth');
 
 const app = express();
 
+if (!config.get('jwtPrivateKey')) {
+  appDebugger('FATAL ERROR: jwtPrivateKey is not defined');
+  process.exit(1);
+}
+
 mongoose.connect('mongodb://localhost/excel')
-  .then(() => console.log('Connected to MongoDB'))
+  .then(() => appDebugger('Connected to MongoDB'))
   .catch(err => console.log(err))
 
 appDebugger('Started Application')

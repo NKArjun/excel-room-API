@@ -1,7 +1,6 @@
 const Joi = require('joi');
 const { User } = require('../models/user');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const authUser = async (req, res, next) => {
     try {
@@ -19,7 +18,7 @@ const authUser = async (req, res, next) => {
         const validPassword = await bcrypt.compare(req.body.password, user.password);
         if (!validPassword) return res.status(400).json({ message: 'Invalid email or password' });
 
-        const token = jwt.sign({ _id: user._id }, 'jwtprivatekey');
+        const token = user.generateAuthToken();
         res.status(200).json(token);
 
     } catch (err) {
