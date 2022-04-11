@@ -2,8 +2,8 @@ const Joi = require('joi');
 const { User } = require('../models/user');
 const bcrypt = require('bcrypt');
 
-const authUser = async (req, res, next) => {
-    try {
+const authUser = () => {
+    return async (req, res) => {
         const schema = Joi.object().keys({
             email: Joi.string().min(5).max(255).required().email(),
             password: Joi.string().min(5).max(1024).required(),
@@ -20,9 +20,6 @@ const authUser = async (req, res, next) => {
 
         const token = user.generateAuthToken();
         res.status(200).json(token);
-
-    } catch (err) {
-        res.status(400).json(err);
     }
 }
 
