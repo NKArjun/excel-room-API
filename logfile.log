@@ -1,2 +1,0 @@
-{"level":"error","message":"Could not found"}
-{"level":"error","message":"Could not found Could not found","stack":"Error: Could not found\n    at C:\\Users\\Arjun\\Desktop\\Projects\\Excel-Room\\API\\excel-room-API\\services\\user.js:37:15\n    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n    at async C:\\Users\\Arjun\\Desktop\\Projects\\Excel-Room\\API\\excel-room-API\\middleware\\async.js:4:13"}
